@@ -1,69 +1,113 @@
-# Lesson 5.2 — Installing and Running kube-bench for CIS Kubernetes Benchmark Security Scanning
+# Lesson 5.2 — Configuring a Service Account in Kubernetes 1.30
 
 > From the [Certified Kubernetes Security Specialist (CKS) Video Course](https://www.pearsonitcertification.com/store/certified-kubernetes-security-specialist-cks-video-9780138296476)
 
 ## Objective
-
-Install kube-bench on a Kubernetes node and understand how to perform CIS Kubernetes Benchmark security compliance checks. kube-bench is an automated tool that scans your Kubernetes cluster and verifies whether it is deployed according to security best practices defined in the CIS Kubernetes Benchmark.
+Learn how to create and configure Service Accounts in Kubernetes, including setting up Roles and RoleBindings to control permissions. This lesson demonstrates the complete workflow of creating a Service Account, defining access rules, binding them together, and testing the resulting permissions.
 
 ## Prerequisites
-
-- A running Vagrant VM with Kubernetes already initialized
-- Network access to download the kube-bench release from GitHub
-- `sudo` privileges to install packages
+- A running Kubernetes 1.30 cluster
+- kubectl configured with cluster access
+- Basic understanding of Kubernetes namespaces and RBAC concepts
 
 ## Steps
 
-### Step 1: Start Your Vagrant Environment
-
+### Step 1: Create a Namespace (Optional)
+Create an isolated namespace for this exercise:
 ```bash
-Vagrant up
+kubectl create namespace demo-ns
 ```
 
-This command initializes and starts your Vagrant VM with Kubernetes.
-
-### Step 2: Download kube-bench
-
+### Step 2: Create a Service Account
+Create a Service Account named `demo-sa` in the `demo-ns` namespace:
 ```bash
-curl -L  https://github.com/aquasecurity/kube-bench/releases/download/v0.8.0/kube-bench_0.8.0_linux_amd64.deb -o kube-bench_0.8.0_linux_amd64.deb
+kubectl create serviceaccount demo-sa -n demo-ns
 ```
 
-This downloads the kube-bench v0.8.0 Debian package to your local system. The `-L` flag follows any redirects, and `-o` specifies the output filename.
-
-### Step 3: Install kube-bench
-
+Verify the service account creation:
 ```bash
-sudo dpkg -i kube-bench_0.8.0_linux_amd64.deb
+kubectl get serviceaccount demo-sa -n demo-ns -o yaml
 ```
 
-This installs the downloaded kube-bench package using the Debian package manager.
+### Step 3: Create a Role
+Define a Role that grants read-only permissions on pods. This role will allow the Service Account to get, watch, and list pods:
+```bash
+cat <<EOF | kubectl apply -f -
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: demo-ns
+  name: pod-reader
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "watch", "list"]
+EOF
+```
+
+### Step 4: Bind the Role to the Service Account
+Create a RoleBinding to associate the `pod-reader` Role with the `demo-sa` Service Account:
+```bash
+cat <<EOF | kubectl apply -f -
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: read-pods
+  namespace: demo-ns
+subjects:
+- kind: ServiceAccount
+  name: demo-sa
+  namespace: demo-ns
+roleRef:
+  kind: Role
+  name: pod-reader
+  apiGroup: rbac.authorization.k8s.io
+EOF
+```
+
+Verify the RoleBinding was created:
+```bash
+kubectl get rolebinding read-pods -n demo-ns -o yaml
+```
+
+### Step 5: Create a Pod Using the Service Account
+Deploy a pod that uses the `demo-sa` Service Account:
+```bash
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-pod
+  namespace: demo-ns
+spec:
+  serviceAccountName: demo-sa
+  containers:
+  - name: demo-container
+    image: nginx:1.21
+EOF
+```
+
+Verify the pod was created and the Service Account is associated:
+```bash
+kubectl get pod demo-pod -n demo-ns -o yaml | grep serviceAccount
+```
+
+### Step 6: Test Service Account Permissions
+Test the permissions granted to the Service Account. The first command should succeed (getting pods is allowed), and the second should fail (creating pods is not allowed):
+```bash
+kubectl auth can-i get pods --as=system:serviceaccount:demo-ns:demo-sa -n demo-ns
+kubectl auth can-i create pods --as=system:serviceaccount:demo-ns:demo-sa -n demo-ns
+```
 
 ## Verification
-
-Once installed, you can verify the installation by running:
-
-```bash
-kube-bench --version
-```
-
-Or run a benchmark scan:
-
-```bash
-kube-bench run
-```
-
-This will output a detailed security scan report showing which CIS Kubernetes Benchmark controls pass, fail, or are not applicable to your cluster.
+- Service Account `demo-sa` exists in the `demo-ns` namespace
+- Role `pod-reader` grants read permissions on pods
+- RoleBinding `read-pods` connects the Service Account to the Role
+- Pod `demo-pod` is running with the Service Account assigned
+- Authorization test confirms: read access is granted, write access is denied
 
 ## Cleanup
-
-To remove kube-bench if needed:
-
+Remove all resources created during this lesson:
 ```bash
-sudo dpkg -r kube-bench
-```
-
-To shut down your Vagrant VM:
-
-```bash
-Vagrant down
+kubectl delete namespace demo-ns
 ```

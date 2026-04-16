@@ -1,4 +1,4 @@
-# Lesson 2.2 — Setting Up kops on Google Cloud Engine
+# Lesson 1.2 — Setting Up kops on Google Cloud Engine
 
 > From the [Certified Kubernetes Security Specialist (CKS) Video Course](https://www.pearsonitcertification.com/store/certified-kubernetes-security-specialist-cks-video-9780138296476)
 

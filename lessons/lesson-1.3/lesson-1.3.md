@@ -1,4 +1,4 @@
-# Lesson 2.3 — Kubernetes Cluster Setup with kops on GCE
+# Lesson 1.3 — Kubernetes Cluster Setup with kops on GCE
 
 > From the [Certified Kubernetes Security Specialist (CKS) Video Course](https://www.pearsonitcertification.com/store/certified-kubernetes-security-specialist-cks-video-9780138296476)
 

@@ -1,4 +1,4 @@
-# Lesson 12.3 — Disabling Default Settings for Service Accounts
+# Lesson 5.3 — Disabling Default Settings for Service Accounts
 
 > From the [Certified Kubernetes Security Specialist (CKS) Video Course](https://www.pearsonitcertification.com/store/certified-kubernetes-security-specialist-cks-video-9780138296476)
 

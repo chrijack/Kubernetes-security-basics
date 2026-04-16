@@ -21,38 +21,42 @@ All lesson materials are located in the `lessons/` directory.
 
 | Lesson | Topic | Link |
 |--------|-------|------|
-| 2.2 | Setting Up kops on Google Cloud Engine | [lessons/lesson-2.2/lesson-2.2.md](lessons/lesson-2.2/lesson-2.2.md) |
-| 2.3 | Kubernetes Cluster Setup with kops on GCE | [lessons/lesson-2.3/lesson-2.3.md](lessons/lesson-2.3/lesson-2.3.md) |
-| 2.4 | Getting Minikube Up and Running with Cilium | [lessons/lesson-2.4/lesson-2.4.md](lessons/lesson-2.4/lesson-2.4.md) |
+| 1.2 | Setting Up kops on Google Cloud Engine | [lessons/lesson-1.2/lesson-1.2.md](lessons/lesson-1.2/lesson-1.2.md) |
+| 1.3 | Kubernetes Cluster Setup with kops on GCE | [lessons/lesson-1.3/lesson-1.3.md](lessons/lesson-1.3/lesson-1.3.md) |
+| 1.4 | Getting Minikube Up and Running with Cilium | [lessons/lesson-1.4/lesson-1.4.md](lessons/lesson-1.4/lesson-1.4.md) |
+
+### Lesson 2: Kubernetes Security Foundation
+
+_No demo scripts — conceptual lesson only._
 
 ### Lesson 3: CIS Benchmark Review of Kubernetes Components
 
 | Lesson | Topic | Link |
 |--------|-------|------|
-| 5.2 | Installing and Running kube-bench for CIS Kubernetes Benchmark Security Scanning | [lessons/lesson-5.2/lesson-5.2.md](lessons/lesson-5.2/lesson-5.2.md) |
+| 3.2 | Installing and Running kube-bench for CIS Kubernetes Benchmark Security Scanning | [lessons/lesson-3.2/lesson-3.2.md](lessons/lesson-3.2/lesson-3.2.md) |
 
 ### Lesson 4: Role Based Access Control (RBAC)
 
 | Lesson | Topic | Link |
 |--------|-------|------|
-| 11.2 | Creating a User Account in Kubernetes | [lessons/lesson-11.2/lesson-11.2.md](lessons/lesson-11.2/lesson-11.2.md) |
-| 11.3 | Configuring Developer Permissions with Kubernetes RBAC | [lessons/lesson-11.3/lesson-11.3.md](lessons/lesson-11.3/lesson-11.3.md) |
-| 11.4 | ClusterRoles, Role Aggregation, and Privilege Validation | [lessons/lesson-11.4/lesson-11.4.md](lessons/lesson-11.4/lesson-11.4.md) |
-| 11.5 | Inspecting, Validating, and Troubleshooting RBAC Privileges | [lessons/lesson-11.5/lesson-11.5.md](lessons/lesson-11.5/lesson-11.5.md) |
+| 4.2 | Creating a User Account in Kubernetes | [lessons/lesson-4.2/lesson-4.2.md](lessons/lesson-4.2/lesson-4.2.md) |
+| 4.3 | Configuring Developer Permissions with Kubernetes RBAC | [lessons/lesson-4.3/lesson-4.3.md](lessons/lesson-4.3/lesson-4.3.md) |
+| 4.4 | ClusterRoles, Role Aggregation, and Privilege Validation | [lessons/lesson-4.4/lesson-4.4.md](lessons/lesson-4.4/lesson-4.4.md) |
+| 4.5 | Inspecting, Validating, and Troubleshooting RBAC Privileges | [lessons/lesson-4.5/lesson-4.5.md](lessons/lesson-4.5/lesson-4.5.md) |
 
 ### Lesson 5: Protecting Service Accounts
 
 | Lesson | Topic | Link |
 |--------|-------|------|
-| 12.2 | Configuring a Service Account in Kubernetes 1.30 | [lessons/lesson-12.2/lesson-12.2.md](lessons/lesson-12.2/lesson-12.2.md) |
-| 12.3 | Disabling Default Settings for Service Accounts | [lessons/lesson-12.3/lesson-12.3.md](lessons/lesson-12.3/lesson-12.3.md) |
-| 12.4 | Verifying Service Account Security and Ensuring Compliance | [lessons/lesson-12.4/lesson-12.4.md](lessons/lesson-12.4/lesson-12.4.md) |
+| 5.2 | Configuring a Service Account in Kubernetes 1.30 | [lessons/lesson-5.2/lesson-5.2.md](lessons/lesson-5.2/lesson-5.2.md) |
+| 5.3 | Disabling Default Settings for Service Accounts | [lessons/lesson-5.3/lesson-5.3.md](lessons/lesson-5.3/lesson-5.3.md) |
+| 5.4 | Verifying Service Account Security and Ensuring Compliance | [lessons/lesson-5.4/lesson-5.4.md](lessons/lesson-5.4/lesson-5.4.md) |
 
 ### Lesson 6: Verify Platform Binaries Before Deploying
 
 | Lesson | Topic | Link |
 |--------|-------|------|
-| 9.2 | Verifying Kubernetes Binary Integrity | [lessons/lesson-9.2/lesson-9.2.md](lessons/lesson-9.2/lesson-9.2.md) |
+| 6.2 | Verifying Kubernetes Binary Integrity | [lessons/lesson-6.2/lesson-6.2.md](lessons/lesson-6.2/lesson-6.2.md) |
 
 ---
 
@@ -73,18 +77,18 @@ All lesson materials are located in the `lessons/` directory.
 ├── README.md
 ├── .gitignore
 ├── lessons/
-│   ├── lesson-2.2/
-│   ├── lesson-2.3/
-│   ├── lesson-2.4/
+│   ├── lesson-1.2/
+│   ├── lesson-1.3/
+│   ├── lesson-1.4/
+│   ├── lesson-3.2/
+│   ├── lesson-4.2/
+│   ├── lesson-4.3/
+│   ├── lesson-4.4/
+│   ├── lesson-4.5/
 │   ├── lesson-5.2/
-│   ├── lesson-11.2/
-│   ├── lesson-11.3/
-│   ├── lesson-11.4/
-│   ├── lesson-11.5/
-│   ├── lesson-12.2/
-│   ├── lesson-12.3/
-│   ├── lesson-12.4/
-│   └── lesson-9.2/
+│   ├── lesson-5.3/
+│   ├── lesson-5.4/
+│   └── lesson-6.2/
 ```
 
 ---

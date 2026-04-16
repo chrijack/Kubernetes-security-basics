@@ -1,4 +1,4 @@
-# Lesson 12.4 — Verifying Service Account Security and Ensuring Compliance
+# Lesson 5.4 — Verifying Service Account Security and Ensuring Compliance
 
 > From the [Certified Kubernetes Security Specialist (CKS) Video Course](https://www.pearsonitcertification.com/store/certified-kubernetes-security-specialist-cks-video-9780138296476)
 

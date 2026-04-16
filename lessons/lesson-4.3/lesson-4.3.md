@@ -1,4 +1,4 @@
-# Lesson 11.3 — Configuring Developer Permissions with Kubernetes RBAC
+# Lesson 4.3 — Configuring Developer Permissions with Kubernetes RBAC
 
 > From the [Certified Kubernetes Security Specialist (CKS) Video Course](https://www.pearsonitcertification.com/store/certified-kubernetes-security-specialist-cks-video-9780138296476)
 
